@@ -1,3 +1,6 @@
+"""
+This is the library for the log in page
+"""
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -6,11 +9,23 @@ from selenium.webdriver.chrome.options import Options
 
 
 class Login:
+    """
+    A class to handle login functionality for the MyGate dashboard.
+    """
     def __init__(self,email_id,password):
+        """
+
+        :param email_id: User's email address.
+        :param password: User's password.
+        """
         self.email_id=email_id
         self.password=password
 
     def launch_browser(self):
+        """
+        Launches a Chrome browser in incognito mode, navigates to the login page.
+        :return: An instance of Chrome WebDriver.
+        """
         options = Options()
         options.add_argument("--incognito")
         driver = webdriver.Chrome(options=options)
@@ -20,6 +35,10 @@ class Login:
         return driver
 
     def login(self,driver):
+        """
+        Logs in to the MyGate dashboard using provided credentials and OTP.
+        :param driver: An instance of Chrome WebDriver.
+        """
         wait = WebDriverWait(driver, 40)
         try:
             #enter the email_id
@@ -41,8 +60,8 @@ class Login:
             if element=="Concorde Silicon Valley":
                 print("login successful")
 
-        except Exception:
-            print("login failed")
+        except Exception as e:
+            print("login failed",str(e))
 
 
 

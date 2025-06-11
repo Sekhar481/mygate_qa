@@ -8,12 +8,25 @@ from login_page import Login
 
 
 class Complaints:
+    """
+        A class to automate the process of raising a complaint through a web portal.
+    """
     def __init__(self,subject,house_no,content):
+        """
+
+        :param subject: Subject of the complaint
+        :param house_no: House number related to the complaint
+        :param content: Detailed content or description of the complaint
+        """
         self.subject=subject
         self.house_no=house_no
         self.content=content
 
     def complaints(self,driver):
+        """
+        Automates the process of filing a complaint in the Help Desk section of the application.
+        :param driver: An instance of Chrome WebDriver.
+        """
 
         wait = WebDriverWait(driver, 40)
         try:
@@ -83,13 +96,8 @@ class Complaints:
 
             print("successfully raised a complaint")
 
-        except Exception:
-            print(False)
-
-
-
-
-
+        except Exception as e:
+            print("failed to raise complaint:",e)
 
 
 if __name__ == "__main__":
